@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+.ck.ck-editor__main .ck-content {
+    height: 150px;
+}
+
+.post-body h1{
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.75rem; /* 28px */
+    font-weight: 700;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+
+.post-body h2{
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.75rem; /* 28px */
+    font-weight: 700;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+
+
+
+
