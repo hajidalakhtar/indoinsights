@@ -4,8 +4,13 @@ import {Tab} from '@headlessui/react'
 import TextInput from "@/Components/TextInput.jsx";
 import Select from 'react-select'
 import TextEditor from "@/Components/TextEditor.jsx";
-import {useDropzone} from 'react-dropzone'
 import {router, usePage} from "@inertiajs/react";
+import Uppy from '@uppy/core';
+import {Dashboard} from '@uppy/react';
+
+import '@uppy/core/dist/style.min.css';
+import '@uppy/dashboard/dist/style.min.css';
+
 
 export default function Create({auth, csrf_token, rooms}) {
     const {errors} = usePage().props
@@ -224,98 +229,53 @@ function PostsForm({csrf_token, roomSelected}) {
 
 
 function ImageForm({accept, roomSelected}) {
+
     const [title, setTitle] = useState('');
-    const [uploadedFiles, setUploadedFiles] = useState([]);
-    const uploadFiles = () => {
+    const uploadFiles = (e) => {
+        e.preventDefault();
         const formData = new FormData();
-        for (const file of uploadedFiles) {
-            formData.append('postImage', file);
-            formData.append('category', 'Image');
-            formData.append('title', title);
-            formData.append('room_id', roomSelected);
-        }
+        formData.append('postImage', uppy.getFiles()[0].data);
+        formData.append('category', 'Image');
+        formData.append('title', title);
+        formData.append('room_id', roomSelected);
 
 
         router.post(route('posts.store'), formData)
 
     };
-    const {acceptedFiles, getRootProps, getInputProps} = useDropzone({
-        accept: {
-            'image/*': []
-        },
-        onDrop: acceptedFiles => {
-            setUploadedFiles(
-                acceptedFiles.map(file =>
-                    Object.assign(file, {
-                        previewUrl: URL.createObjectURL(file)
-                    })
-                )
-            );
-        }
-    });
-    useEffect(() => {
-        return () => {
-            uploadedFiles.forEach(file => URL.revokeObjectURL(file.previewUrl));
-        };
-    }, [uploadedFiles]);
 
-    const renderUploadedImages = () => {
-        return uploadedFiles.map(file => (
-            <div key={file.name}>
-                <img
-                    className="h-auto max-w-full rounded-lg"
-                    src={file.previewUrl}
-                    onLoad={() => {
-                        URL.revokeObjectURL(file.previewUrl);
-                    }}
-                />
-            </div>
-        ));
-    };
+    const uppy = new Uppy({
+        restrictions: {
+            allowedFileTypes: ['.jpg', '.jpeg', '.png', '.gif'],
+            maxFileSize: 5 * 1024 * 1024, // 5 MB
+            maxNumberOfFiles: 1
+
+        },
+
+
+    })
+
+
     return (
         <section className="container">
-            <TextInput
-                className="w-full"
-                placeholder="Title"
-                value={title}
-                onChange={e => setTitle(e.target.value)}
-            />
-            <div {...getRootProps({className: 'flex items-center justify-center w-full mt-4'})}>
-                <label
-                    htmlFor="dropzone-file"
-                    className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50  hover:bg-gray-100 "
-                >
-                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                        <svg
-                            className="w-10 h-10 mb-3 text-gray-400"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                            ></path>
-                        </svg>
-                        <p className="mb-2 text-sm text-gray-500 ">
-                            <span className="font-semibold">Click to upload</span> or drag and drop
-                        </p>
-                        <p className="text-xs text-gray-500 ">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
-                    </div>
-                    <input id="dropzone-file" type="file" {...getInputProps()} className="hidden"/>
-                </label>
-            </div>
-            {uploadedFiles.length > 0 && (
-                <React.Fragment>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-10">{renderUploadedImages()}</div>
-                    <button onClick={uploadFiles}
-                            className=" mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Submit
+
+            <form onSubmit={uploadFiles}>
+                <TextInput type="text" name="title" onChange={(e) => setTitle(e.target.value)} className={"w-full mb-4"}
+                           placeholder={"Title"}/>
+                <Dashboard name={"file"} uppy={uppy}
+                           hideUploadButton={true}
+
+                />
+                <div className="flex justify-end">
+
+
+                    <button
+                        className={" mt-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"}
+                        type="submit">Submit
                     </button>
-                </React.Fragment>
-            )}
+                </div>
+
+            </form>
         </section>
     );
 }
