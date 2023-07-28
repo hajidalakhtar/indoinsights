@@ -16,7 +16,9 @@ export default function Index({auth, questions, rooms}) {
     function openModal() {
         setIsOpen(true)
     }
-
+    const handleButtonClick = () => {
+        setIsOpen(true);
+    };
 
     return (
         <DetailLayout
@@ -53,8 +55,17 @@ export default function Index({auth, questions, rooms}) {
                             </svg>
                         }
 
-                                          buttonAction={() => setIsOpen(true)}
-                                          buttonTitle={"Tanya"}
+                                          // button={<button  onClick={setIsOpen(true)} className="w-full bg-blue-500 text-md text-white font-black rounded-full  py-1.5 ml-auto "> Tanya </button>}
+
+                                          button={
+                                              <button
+                                                  onClick={handleButtonClick}
+                                                  className="w-full bg-blue-500 text-md text-white font-black rounded-full py-1.5 ml-auto"
+                                              >
+                                                  Tanya
+                                              </button>
+                                          }
+
                                           description={"Tanyakan sesuatu kepada pengajar atau teman-temanmu"}
                                           title={"Tanyakan Sesuatu"}/>
 

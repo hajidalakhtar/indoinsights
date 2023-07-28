@@ -1,5 +1,7 @@
 import CardTopUser from "@/Components/Layout/RightBar/CardTopUser.jsx";
 import {CreateWidgetCard} from "@/Components/Molecules/index.jsx";
+import React from "react";
+import { Link } from '@inertiajs/react'
 
 export default function Index({topUser}) {
 
@@ -15,12 +17,15 @@ export default function Index({topUser}) {
                           d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                 </svg>
             }
-                              // buttonAction={() => alert.log("asdas")}}
-                              buttonAction={() =>  window.location.href = route('posts.create')}
-                              buttonTitle={" Buat Post Sekarang"}
                               description={"Bagikan petualangan seru mu yang tak terlupakanmu"}
 
                               title={"Buat Post"}
+
+
+                              button={<Link href={route("posts.create")} as="button" type="button"
+                                            className="w-full bg-blue-500 text-md text-white font-black rounded-full  py-1.5 ml-auto ">Buat
+                                  Post Sekarang</Link>
+                              }
             />
 
 

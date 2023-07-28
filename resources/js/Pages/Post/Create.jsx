@@ -139,8 +139,6 @@ export default function Create({auth, csrf_token, rooms}) {
                             </div>
                         </div>
                         <ul>
-                         
-	       
                             <li>1. Gunakan Bahasa yang Sopan dan Tepat:</li>
                             <li>2. Jelaskan Pertanyaan atau Topik dengan Jelas:</li>
                             <li>3. Hindari Menulis dengan Ngasal:</li>
@@ -149,8 +147,7 @@ export default function Create({auth, csrf_token, rooms}) {
                             <li>6. Gunakan Paragraf yang Teratur:</li>
                             <li>7. Berikan Informasi Tambahan (jika perlu):</li>
                             <li>8. Gunakan Tanda Baca dengan Benar:</li>
-                        
-	    </ul>
+                        </ul>
                     </div>
                 </div>
             </div>

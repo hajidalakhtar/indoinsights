@@ -56,7 +56,7 @@ export default function CardPost({post}) {
                             </button>
                         </div>
                     </div>
-                    <a href={route('posts.show', post.id)}>
+                    <Link href={route('posts.show', post.id)}>
                          <div className="my-4">
                         <h2 className="text-2xl font-semibold mb-2 hover:text-blue-600 leading-7 ">
                             <p>{post.title}</p>
@@ -76,7 +76,7 @@ export default function CardPost({post}) {
 
 
                     </div>
-                    </a>
+                    </Link>
 
 
                     <div>
