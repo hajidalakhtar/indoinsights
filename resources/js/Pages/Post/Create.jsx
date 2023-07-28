@@ -139,10 +139,14 @@ export default function Create({auth, csrf_token, rooms}) {
                             </div>
                         </div>
                         <ul>
-                            <li>Menulis yang benar</li>
-                            <li>jangan ngasal saat bertanya</li>
-                            <li>jangan nanya aneh aneh</li>
-                            <li>jangan nanya di luar kontex</li>
+                            <li>1. Gunakan Bahasa yang Sopan dan Tepat:</li>
+                            <li>2. Jelaskan Pertanyaan atau Topik dengan Jelas:</li>
+                            <li>3. Hindari Menulis dengan Ngasal:</li>
+                            <li>4. Pertimbangkan Konteks dan Relevansi:</li>
+                            <li>5. Gunakan Ejaan dan Tata Bahasa yang Benar:</li>
+                            <li>6. Gunakan Paragraf yang Teratur:</li>
+                            <li>7. Berikan Informasi Tambahan (jika perlu):</li>
+                            <li>8. Gunakan Tanda Baca dengan Benar:</li>
                         </ul>
                     </div>
                 </div>
