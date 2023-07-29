@@ -50,9 +50,12 @@ class PostController extends Controller
 
 
         $post = null;
-        if ($request->category == "Image") {
-            $imagePath = $request->file('postImage')->store('public/uploads/');
-            $imageUrl = URL::asset('storage') . "/uploads/" . basename($imagePath);
+	if ($request->category == "Image") {
+		//dd($request->file('postImage'));    
+	
+	    $imagePath = $request->file('postImage')->store('uploads');
+	   // dd($imagePath);
+	    $imageUrl = URL::asset('storage') . "/uploads/" . basename($imagePath);
             $post = Post::create([
                 "room_id" => $request->room_id,
                 "title" => $request->title,
@@ -61,7 +64,8 @@ class PostController extends Controller
                 "tags" => json_encode(["tess", "tessss"]),
                 "image_url" => $imageUrl
             ]);
-        }
+	}
+
 
         if ($request->category == "Posting") {
             $requestData = $request->all();
@@ -125,8 +129,9 @@ class PostController extends Controller
 
     public function storeImage(Request $request): JsonResponse
     {
-        if ($request->hasFile('files')) {
-            $originName = $request->file('files')->getClientOriginalName();
+        if ($request->hasFile('files')) {    
+
+		$originName = $request->file('files')->getClientOriginalName();
             $fileName = pathinfo($originName, PATHINFO_FILENAME);
             $extension = $request->file('files')->getClientOriginalExtension();
             $fileName = $fileName . '_' . time() . '.' . $extension;
