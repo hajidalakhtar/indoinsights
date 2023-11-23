@@ -5,7 +5,6 @@ function RoomItem(props) {
 
     return (
         <>
-            {/*href={route('posts.show', props.id)}*/}
             <Link href={route("room.show", props.id)}>
                 <div className="mt-0.5 w-100">
                     <button
@@ -38,8 +37,6 @@ function RoomItem(props) {
                     </button>
                 </div>
             </Link>
-
-
         </>
     );
 }

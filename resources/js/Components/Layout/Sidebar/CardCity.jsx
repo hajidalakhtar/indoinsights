@@ -18,7 +18,7 @@ export default function CardCity({rooms}) {
                 }
             />
             {rooms.map((room) => {
-                return <RoomItem name={room.name} id={room.id} icon={room.icon} countPost={room.posts.length}
+                return <RoomItem name={room.name} id={room.id} icon={`https://api.dicebear.com/6.x/initials/svg?backgroundColor=3b82f6&seed=${room.name}`} countPost={room.posts.length}
                                  active={false}></RoomItem>
             })}
             {/*<a href="" className="text-sm">Load More</a>*/}
