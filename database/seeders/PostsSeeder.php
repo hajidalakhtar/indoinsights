@@ -58,7 +58,7 @@ class PostsSeeder extends Seeder
                 'tags' => json_encode(['Bandung', 'Bandung keren bet dahh']),
                 'category' => 'Posting',
                 'user_id' => $users->random()->id,
-                'room_id' => $rooms->where("name", "Bandung")->first()->id,
+                'room_id' => $rooms->random()->id,
                 'is_published' => true,
                 'created_at' => now(),
                 'updated_at' => now()
@@ -90,7 +90,7 @@ class PostsSeeder extends Seeder
                 'tags' => json_encode(['tag3', 'tag4']),
                 'category' => 'Posting',
                 'user_id' => $users->random()->id,
-                'room_id' => $rooms->where("name", "Yogyakarta")->first()->id,
+                'room_id' => $rooms->random()->id,
 
                 'is_published' => true,
                 'created_at' => now(),
@@ -118,7 +118,7 @@ class PostsSeeder extends Seeder
                 'tags' => json_encode(['tag3', 'tag4']),
                 'category' => 'Posting',
                 'user_id' => $users->random()->id,
-                'room_id' => $rooms->where("name", "Medan")->first()->id,
+                'room_id' => $rooms->random()->id,
                 'is_published' => true,
                 'created_at' => now(),
                 'updated_at' => now()
@@ -155,7 +155,7 @@ class PostsSeeder extends Seeder
                 'tags' => json_encode(['tag3', 'tag4']),
                 'category' => 'Posting',
                 'user_id' => $users->random()->id,
-                'room_id' => $rooms->where("name", "Surabaya")->first()->id,
+                'room_id' => $rooms->random()->id,
                 'is_published' => true,
                 'created_at' => now(),
                 'updated_at' => now()
@@ -188,7 +188,7 @@ class PostsSeeder extends Seeder
                 'tags' => json_encode(['tag3', 'tag4']),
                 'category' => 'Posting',
                 'user_id' => $users->random()->id,
-                'room_id' => $rooms->where("name", "Jakarta")->first()->id,
+                'room_id' => $rooms->random()->id,
                 'is_published' => true,
                 'created_at' => now(),
                 'updated_at' => now()
